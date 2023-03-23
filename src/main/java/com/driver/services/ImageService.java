@@ -17,15 +17,34 @@ public class ImageService {
 
     public Image addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog
-
+          Image image = new Image();
+          image.setDimension(dimensions);
+          image.setDescription(description);
+          Blog blog = blogRepository2.findById(blogId).get();
+          blog.getImageList().add(image);
+          blogRepository2.save(blog);
+          return image;
     }
 
     public void deleteImage(Integer id){
+        Image image = imageRepository2.findById(id).get();
+        Blog blog = image.getBlog();
+        blog.getImageList().remove(image);
+        imageRepository2.deleteById(id);
+        blogRepository2.save(blog);
 
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
+       int count = 0;
+       Image image = imageRepository2.findById(id).get();
+      String [] screen = screenDimensions.split("X");
+      String [] imageS = image.getDimension().split("X");
+      int l = Integer.parseInt(screen[0])/Integer.parseInt(imageS[0]);
+      int b = Integer.parseInt(screen[1])/Integer.parseInt(screen[1]);
+      count = l*b;
 
+       return count;
     }
 }
