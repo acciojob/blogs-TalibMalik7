@@ -41,7 +41,7 @@ public class ImageService {
       String [] screen = screenDimensions.split("X");
       String [] imageS = image.getDimensions().split("X");
       int l = Integer.parseInt(screen[0])/Integer.parseInt(imageS[0]);
-      int b = Integer.parseInt(screen[1])/Integer.parseInt(screen[1]);
+      int b = Integer.parseInt(screen[1])/Integer.parseInt(imageS[1]);
       count = l*b;
 
        return count;
