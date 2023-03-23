@@ -1,36 +1,31 @@
 package com.driver.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-
-
-public class User{
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private String username;
-
     private String password;
-
-    private String firstName = "test";
-
-    private String lastName = "test";
-
-
-
+    private String firstName;
+    private String lastName;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Blog> blogList = new ArrayList<>();
 
-    public User(){}
+    public User() {
+    }
+
+    public User(int id, String username, String password, String firstName, String lastName, List<Blog> blogList) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.blogList = blogList;
+    }
 
     public int getId() {
         return id;
@@ -77,15 +72,6 @@ public class User{
     }
 
     public void setBlogList(List<Blog> blogList) {
-        this.blogList = blogList;
-    }
-
-    public User(int id, String username, String password, String firstName, String lastName, List<Blog> blogList) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.blogList = blogList;
     }
 }

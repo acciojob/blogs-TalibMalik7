@@ -5,18 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-
-
-public class Blog{
+public class Blog {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
     private String title;
-
     private String content;
-
     private Date pubDate;
 
     @ManyToOne
@@ -27,7 +21,6 @@ public class Blog{
     List<Image> imageList = new ArrayList<>();
 
     public Blog() {
-
     }
 
     public Blog(int id, String title, String content, Date pubDate, User user, List<Image> imageList) {
