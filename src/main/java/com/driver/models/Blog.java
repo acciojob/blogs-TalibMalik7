@@ -1,10 +1,5 @@
 package com.driver.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +17,7 @@ public class Blog{
 
     private String content;
 
-    private Date date;
+    private Date pubDate;
 
     @ManyToOne
     @JoinColumn
@@ -35,11 +30,11 @@ public class Blog{
 
     }
 
-    public Blog(int id, String title, String content, Date date, User user, List<Image> imageList) {
+    public Blog(int id, String title, String content, Date pubDate, User user, List<Image> imageList) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.date = date;
+        this.pubDate = pubDate;
         this.user = user;
         this.imageList = imageList;
     }
@@ -68,12 +63,12 @@ public class Blog{
         this.content = content;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getPubDate() {
+        return pubDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
     }
 
     public User getUser() {
